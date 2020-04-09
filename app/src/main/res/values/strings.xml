@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">FeedApp</string>
+    <string name="feed_title">Hello %s</string>
+    <string name="feed_button">Whats on your mind?</string>
+    <string name="create_post_title">Create Post</string>
+    <string name="create_post_button_share">Share</string>
+    <string name="create_post_button_add_photo">Add Photo</string>
+    <string name="create_post_button_placeholder">%s/%s</string>
+</resources>
