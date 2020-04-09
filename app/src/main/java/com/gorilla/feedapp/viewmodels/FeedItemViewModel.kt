@@ -1,6 +1,6 @@
 package com.gorilla.feedapp.viewmodels
 
-class FeedViewModel {
+class FeedItemViewModel {
 
     val title
         get() = ""
