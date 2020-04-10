@@ -6,4 +6,6 @@
     <string name="create_post_button_share">Share</string>
     <string name="create_post_button_add_photo">Add Photo</string>
     <string name="create_post_button_placeholder">%s/%s</string>
+    <string name="create_post_menu_share">Share</string>
+    <string name="share_text_feed">Check out the new feed in the Android Feed app "%s"</string>
 </resources>

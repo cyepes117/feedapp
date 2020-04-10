@@ -4,16 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="viewModel"
-            type="com.gorilla.feedapp.viewmodels.CreateFeedViewModel" />
+            type="com.gorilla.feedapp.viewmodels.CreatePostViewModel" />
+        <variable
+            name="callback"
+            type="com.gorilla.feedapp.view.CreatePostFragment.Callback" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#DDD">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary"
+            app:titleTextColor="@android:color/white"
+            app:contentInsetStartWithNavigation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:menu="@menu/menu_create_post"
+            app:navigationIcon="@drawable/ic_detail_back" />
 
         <EditText
             android:id="@+id/feed_content"
@@ -22,26 +37,31 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="10dp"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
             android:hint="@string/feed_button"
+            android:inputType="textMultiLine"
+            android:scrollbars="vertical"
+            android:text="@={viewModel.feedContent}"
+            android:maxLength="@{viewModel.maxLength}"
+            android:onTextChanged="@{viewModel.onTextChanged}"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
             android:textColor="#666"
+            app:layout_constraintBottom_toTopOf="@+id/feed_chars"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        <!-- app:textChangedListener="@{viewModel.contentWatcher}" -->
 
         <TextView
             android:id="@+id/feed_chars"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
-            android:text="0/150"
+            android:text="@{viewModel.formattedCount}"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
             android:textColor="@android:color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/feed_date" />
+            app:layout_constraintBottom_toTopOf="@+id/feed_button_add"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <Button
             android:id="@+id/feed_button_add"
@@ -49,13 +69,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="@android:color/white"
-            android:text="@string/feed_button"
+            android:onClick="@{() -> callback.add(viewModel.feed)}"
+            android:text="@string/create_post_button_add_photo"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
             android:textColor="#666"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
-
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </layout>

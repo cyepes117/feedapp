@@ -1,14 +1,22 @@
 package com.gorilla.feedapp.viewmodels
 
-class FeedItemViewModel {
+import com.gorilla.feedapp.data.Feed
+import java.text.SimpleDateFormat
+import java.util.*
+
+class FeedItemViewModel(val feed: Feed) {
 
     val title
-        get() = ""
+        get() = feed.feedId.toString()
     val content
-        get() = ""
+        get() = feed.content
     val imageUrl
-        get() = ""
-    val date
-        get() = ""
+        get() = feed.imageUrl
+    val date: String
+        get() = feed.date
+    //get() = dateFormat.format(feed.date)
 
+    companion object {
+        private val dateFormat = SimpleDateFormat("MMM d, yyyy", Locale.US)
+    }
 }

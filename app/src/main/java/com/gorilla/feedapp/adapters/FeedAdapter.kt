@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.gorilla.feedapp.data.Feed
 import com.gorilla.feedapp.databinding.ListItemFeedBinding
+import com.gorilla.feedapp.viewmodels.FeedItemViewModel
 
 class FeedAdapter : ListAdapter<Feed, RecyclerView.ViewHolder>(FeedDiffCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -35,7 +36,7 @@ class FeedAdapter : ListAdapter<Feed, RecyclerView.ViewHolder>(FeedDiffCallback(
 
         fun bind(item: Feed) {
             binding.apply {
-                feed = item
+                viewModel = FeedItemViewModel(item)
                 executePendingBindings()
             }
         }

@@ -3,14 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
             name="clickListener"
             type="android.view.View.OnClickListener" />
-
         <variable
             name="feed"
             type="com.gorilla.feedapp.data.Feed" />
+        <variable
+            name="viewModel"
+            type="com.gorilla.feedapp.viewmodels.FeedItemViewModel" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -19,32 +20,36 @@
         android:layout_marginStart="@dimen/card_side_margin"
         android:layout_marginEnd="@dimen/card_side_margin"
         android:layout_marginBottom="@dimen/card_bottom_margin"
+        android:background="@android:color/white"
         app:cardElevation="@dimen/card_elevation"
+        app:shapeAppearanceOverlay="@style/ShapeAppearance.Card"
         app:cardPreventCornerOverlap="false">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/feed_item_title"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_normal"
+                android:textColor="@android:color/black"
                 android:gravity="center_horizontal"
-                android:text="@{feed.title}"
+                android:text="@{viewModel.title}"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="parent" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/feed_item_date"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="0dp"
                 android:gravity="center_horizontal"
-                android:text="@{feed.date}"
+                android:textColor="@android:color/black"
+                android:text="@{viewModel.date}"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -56,7 +61,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="0dp"
                 android:gravity="center_horizontal"
-                android:text="@{feed.content}"
+                android:textColor="@android:color/black"
+                android:text="@{viewModel.content}"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -68,7 +74,7 @@
                 android:layout_height="@dimen/plant_item_image_height"
                 android:onClick="@{clickListener}"
                 android:scaleType="centerCrop"
-                app:imageFromUrl="@{feed.imageUrl}"
+                app:imageFromUrl="@{viewModel.imageUrl}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/feed_item_content"/>
