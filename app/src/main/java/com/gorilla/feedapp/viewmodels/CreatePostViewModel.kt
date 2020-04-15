@@ -15,7 +15,7 @@ class CreatePostViewModel internal constructor(
 ) : ViewModel() {
 
     var feedContent = ""
-    val formattedCount = MutableLiveData("${feedContent.length}/$MAX_COUNT")
+    val formattedCount = MutableLiveData(template(feedContent.length))
     val maxLength = MAX_COUNT
 
     val feed: Feed
@@ -25,8 +25,10 @@ class CreatePostViewModel internal constructor(
         )
 
     fun onTextChanged(s: CharSequence, start: Int, end: Int, count: Int) {
-        formattedCount.value = "${s.length}/$MAX_COUNT"
+        formattedCount.value = template(s.length)
     }
+
+    private fun template(length: Int) = "${length}/$MAX_COUNT"
 
     fun insertFeed(feed: Feed) = viewModelScope.launch {
         feedRepository.insertFeed(feed)
